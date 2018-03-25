@@ -1,0 +1,63 @@
+body {
+    width: 1000px;
+    background-color: rgb(250, 239, 194);
+    margin: auto;
+    padding: 0px;
+}
+header {
+    background: linear-gradient(to bottom, transparent, rgb(155, 16, 16));
+    text-align: center;
+    padding: 5px;
+}
+#wrapper {
+    background: linear-gradient(to top, transparent, rgb(155, 16, 16));
+    width: 900px;
+    padding:50px;
+}
+h4 {
+    margin: 5px auto;
+    text-align: center;
+    width: 200px;
+}
+.signIn, .register {
+    display: inline-block;
+    border: 2px dashed black;
+}
+.register {
+    text-align: center;
+    margin: 20px auto 20px 150px;
+    width: 250px;
+    padding: 10px;
+}
+.signIn {
+    text-align: center;
+    margin: 20px 150px 20px auto;
+    width: 250px;
+    padding: 10px;
+    display: inline-block;
+}
+input {
+    width: 150px;
+    display: inline-block;
+}
+#check {
+    padding: 2px;
+    background: linear-gradient(to bottom, #a80101, #e9dc92);
+    border: 2px solid black;
+    margin: 10px;
+    color: #000000;
+    font-size: 20px;
+}
+#response {
+    margin: auto;
+    text-align: center;
+    background: linear-gradient(to bottom, darkred, black);
+    color: red;
+    padding: 5px;
+}
+#cPassword, #conPassword {
+    margin: 5px auto;
+    /* background-color: blue; */
+    text-align: center;
+    display: block;
+}

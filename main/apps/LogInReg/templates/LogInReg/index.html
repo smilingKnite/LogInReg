@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- TYLER MONDRAGON -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="static/styles.css">
+    <title>Log in/Registration</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>Hello Friends</h1>
+        <h2>Register Now!</h2>
+        <h3>..or Log In</h3>
+    </header>
+
+    {# {{ all_users }} #}
+
+    <div id="wrapper">
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+        <h2 id="response">{{message}}</h2>
+        {% endfor %} {% endif %} {% endwith %}
+
+        <div class="signIn">
+            <h4>Sign in!</h4>
+            <form action="/process" method="post">
+                <div id="forms">
+                    Email:
+                    <input type="text" name="email" id="email"> Password:
+                    <input type="text" name="password" id="password">
+                    <input id="check" type="submit" name="submit" value="submit">
+                </div>
+            </form>
+        </div>
+
+        <div class="register">
+            <h4>Register Now!</h4>
+            <form action="/adder" method="post">
+                <div id="register">
+                    Name:
+                    <input type="text" name="nName" id="nName"> Email:
+                    <input type="text" name="eEmail" id="eEmail"> Create Password:
+                    <input type="text" name="cPassword" id="cPassword"> Re-enter Password:
+                    <input type="text" name="conPassword" id="conPassword">
+                    <input id="check" type="submit" name="submit" value="submit">
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
