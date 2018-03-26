@@ -21,8 +21,8 @@
             {% endif %} 
         {% endwith %} 
         
-        {% for users in all_users: %}
-            <p> {{ users.name }} {{ users.email }} {{ users.created_at }}</p>
+        {% for Stuff in all_stuff: %}
+            <p> {{ Stuff.item }} {{ Stuff.add_by }} {{ Stuff.created_at }}</p>
             <hr class="bar"> 
         {% endfor %}
 

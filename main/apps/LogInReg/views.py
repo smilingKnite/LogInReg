@@ -70,7 +70,7 @@ def validate():
                 return redirect('/')
 
         sys.stdout.flush()  # to flush output
-        return redirect('success.html', data)
+        return redirect('new.html', data)
 
 #################################################################################################
 def add():
@@ -101,7 +101,7 @@ def add():
         # mysql.query_db(query, data)
 
         sys.stdout.flush()  # to flush output
-        return render_template("success.html")
+        return render_template("new.html")
 
 #################################################################################################
 def goingaway():
@@ -110,18 +110,18 @@ def goingaway():
     return redirect('/')
 
 #################################################################################################
-def update(request):
-    errors = Blog.objects.basic_validator(request.POST)
-    if len(errors):
-        for tag, error in errors.iteritems():
-            messages.error(request, error, extra_tags=tag)
-        return redirect('/blog/edit/'+id)
-    else:
-        blog = Blog.objects.get(id = id)
-        blog.name = request.POST['name']
-        blog.email = request.POST['email']
-        blog.save()
-        return redirect('success.html')
+# def update(request):
+#     errors = Blog.objects.basic_validator(request.POST)
+#     if len(errors):
+#         for tag, error in errors.iteritems():
+#             messages.error(request, error, extra_tags=tag)
+#         return redirect('/blog/edit/'+id)
+#     else:
+#         blog = Blog.objects.get(id = id)
+#         blog.name = request.POST['name']
+#         blog.email = request.POST['email']
+#         blog.save()
+#         return redirect('success.html')
 
 sys.stdout.flush()  # to flush output
 app.run(debug=True)

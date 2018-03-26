@@ -20,6 +20,7 @@ class BlogManager(models.Manager):
 class User(models.Model):
     name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
+    password = bcrypt.hashpw('/target/views/validate'.encode(), bcrypt.gensalt())
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
     objects = BlogManager()
@@ -31,7 +32,7 @@ class Admin(models.Model):
     updated_at = models.DateTimeField(auto_now = True)
 
 # class password(models.Model):
-#     password = 
+#     password =
 #     hash1 = bcrypt.hashpw('test'.encode(), bcrypt.gensalt())
 
 
