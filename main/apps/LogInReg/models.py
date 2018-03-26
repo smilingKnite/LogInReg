@@ -1,10 +1,10 @@
 from __future__ import unicode_literals
 from django.db import models
 import bcrypt
-from views import *
+from . import views
 
 hash1 = bcrypt.hashpw('test'.encode(), bcrypt.gensalt())
-print hash1
+# print hash1
 # $2b$12$5u.QgExiKyaV1szrvEfbE.sc7tf7hWcE0/AJfivWmWuMxhyTUygm2
 # $2b$12$YcjfvChLPyRbyhWpmff.6eEzbMhutcMmWvfnpm6lg5BxuMTt.ABYy
 # Create your models here.
@@ -20,7 +20,7 @@ class BlogManager(models.Manager):
 class User(models.Model):
     name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
-    password = bcrypt.hashpw('/target/views/validate'.encode(), bcrypt.gensalt())
+    password = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
     objects = BlogManager()

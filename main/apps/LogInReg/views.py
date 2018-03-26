@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 from time import gmtime, strftime
 from django.shortcuts import render, HttpResponse, redirect
-from models import *
+from django.db import models
 from django.utils.crypto import get_random_string
 import sys, re
 from flask import Flask, request, redirect, render_template, session, flash
@@ -17,14 +17,14 @@ rejectEmail = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 # mysql = MySQLConnector(app, 'loginandreg')
 
-def index():
-    users = User.objects.get.all()
+def index(request):
+    users = models.User.objects.get.all()
     # print str(users)
     sys.stdout.flush()  # to flush output
     return render_template('index.html', all_users=users)
 
 #################################################################################################
-def validate():
+def validate(request):
     if request.session == 'post':
         session['email'] = request.form['email']
         session['password'] = request.form['password']
@@ -33,7 +33,7 @@ def validate():
         # salt = binascii.b2a_hex(os.urandom(15))
         # session['salt'] = salt
         hashedPw = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
-        # b92ffe1e926519608bab4cd327aed6e4
+        print hashedPw
         if len(email) < 1 or len(password) < 1:
             flash("Email and/or Password cannot be empty!")
             return redirect('/')
@@ -57,7 +57,7 @@ def validate():
                 # 5d41402abc4b2a76b9719d911017c592103afc347a51dc497702b2d17871ed
                 if result[0]['psswrd'] == encrypted_password:
                     flash("Password matched!")
-                    return render_template('success.html')
+                    return render_template('dashboard.html')
                 else:
                     flash("Password not matched!")
                     # print encrypted_password +'          TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT'
@@ -70,10 +70,10 @@ def validate():
                 return redirect('/')
 
         sys.stdout.flush()  # to flush output
-        return redirect('new.html', data)
+        return redirect('dashboard.html', data)
 
 #################################################################################################
-def add():
+def add(request):
     if request.session == 'post':
         session['name'] = request.form['nName']
         session['email'] = request.form['eEmail']
@@ -88,7 +88,7 @@ def add():
             flash("Password doesn't not match, Try again.")
             return redirect('/')
 
-        query = User.objects.create(name=session['name'], email=session['email'])
+        query = models.User.objects.create(name=session['name'], email=session['email'])
         query.save()
         # "INSERT INTO users (name, email, psswrd, salt, created_at, updated_at) VALUES (:name, :email, :psswrd, :salt, NOW(), NOW())"
         # # We'll then create a dictionary of data from the POST data received.
@@ -101,10 +101,10 @@ def add():
         # mysql.query_db(query, data)
 
         sys.stdout.flush()  # to flush output
-        return render_template("new.html")
+        return render_template("dashboard.html", data)
 
 #################################################################################################
-def goingaway():
+def goingaway(request):
     session.clear()
     sys.stdout.flush()  # to flush output
     return redirect('/')
