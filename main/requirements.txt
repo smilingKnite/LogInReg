@@ -1,0 +1,10 @@
+click==6.7
+Django==1.11.11
+Flask==0.12.2
+itsdangerous==0.24
+Jinja2==2.10
+MarkupSafe==1.0
+pytz==2018.3
+virtualenv==15.1.0
+Werkzeug==0.14.1
+yapf==0.20.2

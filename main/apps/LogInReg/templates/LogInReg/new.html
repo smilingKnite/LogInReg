@@ -13,13 +13,20 @@
     {# {{ all_users }} #}
 
     <div class="wrapper">
-        {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
-        <h2 class="done">{{message}}</h2>
-        {% endfor %} {% endif %} {% endwith %} {% for users in all_users: %}
-        <p> {{ users['name'] }} {{ users['email'] }} {{ users['created_at'] }}</p>
-        <hr class="bar"> {% endfor %}
+        {% with messages = get_flashed_messages() %} 
+            {% if messages %} 
+                {% for message in messages %}
+                    <h2 class="done">{{message}}</h2>
+                {% endfor %} 
+            {% endif %} 
+        {% endwith %} 
+        
+        {% for users in all_users: %}
+            <p> {{ users.name }} {{ users.email }} {{ users.created_at }}</p>
+            <hr class="bar"> 
+        {% endfor %}
 
-        <a href="/exit">
+        <a href="/target/LogInReg/exit">
             <button id="hoome">Log Out</button>
         </a>
     </div>

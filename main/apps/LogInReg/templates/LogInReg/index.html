@@ -18,16 +18,18 @@
         <h3>..or Log In</h3>
     </header>
 
-    {# {{ all_users }} #}
-
     <div id="wrapper">
-        {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
-        <h2 id="response">{{message}}</h2>
-        {% endfor %} {% endif %} {% endwith %}
+        {# with messages = get_flashed_messages() #} 
+            {# if messages #} 
+                {# for message in messages #}
+                    <h2 id="response">{{message}}</h2>
+                {# endfor #} 
+            {# endif #} 
+        {# endwith #}
 
         <div class="signIn">
             <h4>Sign in!</h4>
-            <form action="/process" method="post">
+            <form action="/target/LogInReg/process" method="post">
                 <div id="forms">
                     Email:
                     <input type="text" name="email" id="email"> Password:
@@ -39,7 +41,7 @@
 
         <div class="register">
             <h4>Register Now!</h4>
-            <form action="/adder" method="post">
+            <form action="/target/LogInReg/adder" method="post">
                 <div id="register">
                     Name:
                     <input type="text" name="nName" id="nName"> Email:
